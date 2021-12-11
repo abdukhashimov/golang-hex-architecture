@@ -30,3 +30,7 @@ type ResponseError struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
 }
+
+type ResponseCreated struct {
+	ID string `json:"id"`
+}

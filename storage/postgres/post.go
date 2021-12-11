@@ -15,13 +15,16 @@ func NewPostStorage(db *sqlx.DB) repo.PostI {
 }
 
 func (p *posts) Create(payload models.Post) (string, error) {
+	// complete me :)
 	return "", nil
 }
 
 func (p *posts) GetUserPosts(filter models.PostFilter) (models.PostAll, error) {
+	// complete me :)
 	return models.PostAll{}, nil
 }
 
 func (p *posts) GetPosts(offset, limit int) (models.PostAll, error) {
+	// complete me :)
 	return models.PostAll{}, nil
 }
