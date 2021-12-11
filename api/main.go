@@ -14,7 +14,7 @@ import (
 type RouterOptions struct {
 	Cfg     *config.Config
 	Log     *zap.Logger
-	Service *service.ServiceI
+	Service service.ServiceI
 }
 
 //@securityDefinitions.apikey ApiKeyAuth

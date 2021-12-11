@@ -9,13 +9,13 @@ import (
 type handlerV1 struct {
 	log     *zap.Logger
 	cfg     *config.Config
-	service *service.ServiceI
+	service service.ServiceI
 }
 
 type HandlerOptions struct {
 	Cfg     *config.Config
 	Log     *zap.Logger
-	Service *service.ServiceI
+	Service service.ServiceI
 }
 
 func NewHandler(opts *HandlerOptions) *handlerV1 {
@@ -24,4 +24,9 @@ func NewHandler(opts *HandlerOptions) *handlerV1 {
 		log:     opts.Log,
 		service: opts.Service,
 	}
+}
+
+type ResponseError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
 }

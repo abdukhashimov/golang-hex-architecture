@@ -14,7 +14,7 @@ type PostMutationModel struct {
 }
 
 type PostFilter struct {
-	Page   int    `json:"page"`
+	Offset int    `json:"offset"`
 	Limit  int    `json:"limit"`
 	Author string `json:"author"`
 }
