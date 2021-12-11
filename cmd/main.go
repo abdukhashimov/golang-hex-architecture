@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
+
+	"github.com/abdukhashimov/golang-hex-architecture/config"
 	"github.com/abdukhashimov/golang-hex-architecture/pkg/logger"
-	"go.uber.org/zap"
 )
 
 func main() {
 	logger := logger.NewLogger()
-	logger.Info("Hello world", zap.String("hello", "hello"))
+	cfg := config.Load()
+	fmt.Println(logger, cfg)
 }
