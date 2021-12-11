@@ -1,12 +1,20 @@
 package config
 
-import "os"
+import (
+	"os"
+
+	"github.com/spf13/cast"
+)
 
 type Config struct {
+	HTTPPort string
 }
 
 func Load() Config {
 	config := Config{}
+
+	config.HTTPPort = cast.ToString(getOrReturnDefaultValue("HTTP_PORT", ":8080"))
+
 	return config
 }
 
