@@ -39,7 +39,7 @@ func (p *post) GetPostsByAuthhor(ctx context.Context, filter models.PostFilter) 
 	)
 
 	if filter.Author == "" {
-		res, err = p.db.Post().GetPosts(filter.Page, filter.Limit)
+		res, err = p.db.Post().GetPosts(filter.Offset, filter.Limit)
 	} else {
 		res, err = p.db.Post().GetUserPosts(filter)
 	}

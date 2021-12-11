@@ -5,5 +5,5 @@ import "github.com/abdukhashimov/golang-hex-architecture/service/models"
 type PostI interface {
 	Create(payload models.Post) (string, error)
 	GetUserPosts(filter models.PostFilter) (models.PostAll, error)
-	GetPosts(page, limit int) (models.PostAll, error)
+	GetPosts(offset, limit int) (models.PostAll, error)
 }

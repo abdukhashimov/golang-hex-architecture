@@ -22,6 +22,6 @@ func (p *posts) GetUserPosts(filter models.PostFilter) (models.PostAll, error) {
 	return models.PostAll{}, nil
 }
 
-func (p *posts) GetPosts(page, limit int) (models.PostAll, error) {
+func (p *posts) GetPosts(offset, limit int) (models.PostAll, error) {
 	return models.PostAll{}, nil
 }
