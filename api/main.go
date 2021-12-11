@@ -4,6 +4,8 @@ import (
 	v1 "github.com/abdukhashimov/golang-hex-architecture/api/handlers/v1"
 	"github.com/abdukhashimov/golang-hex-architecture/config"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 )
 
@@ -26,6 +28,8 @@ func New(opt *RouterOptions) *gin.Engine {
 	{
 		apiV1.GET("/posts", handlerV1.GetUserPosts)
 	}
+	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
 	return router
 }
