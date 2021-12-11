@@ -20,11 +20,7 @@ func (h *handlerV1) GetUserPosts(c *gin.Context) {
 		Limit:  limit,
 	})
 
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, ResponseError{
-			Code:    "INTERNAL_SERVER_ERR",
-			Message: "failed to list user posts",
-		})
+	if h.handleInternal(c, "failed to get posts by author", err) {
 		return
 	}
 
@@ -38,20 +34,12 @@ func (h *handlerV1) CreateUserPost(c *gin.Context) {
 	)
 
 	err := c.ShouldBindJSON(&payload)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, ResponseError{
-			Code:    "BAD_BODY_PARAMS",
-			Message: "failed to bind json to structure",
-		})
+	if h.handleBadRequest(c, "failed to convert json to struct", err) {
 		return
 	}
 
 	res, err := h.service.Post().CreatePost(context.Background(), payload)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, ResponseError{
-			Code:    "INTERNAL_SERVER_ERR",
-			Message: "failed to list user posts",
-		})
+	if h.handleInternal(c, "failed to create post", err) {
 		return
 	}
 
