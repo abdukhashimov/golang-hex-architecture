@@ -14,8 +14,9 @@ type PostMutationModel struct {
 }
 
 type PostFilter struct {
-	Page  int `json:"page"`
-	Limit int `json:"limit"`
+	Page   int    `json:"page"`
+	Limit  int    `json:"limit"`
+	Author string `json:"author"`
 }
 
 type PostAll struct {
