@@ -33,5 +33,16 @@ func (p *post) CreatePost(ctx context.Context, req models.Post) (string, error) 
 }
 
 func (p *post) GetPostsByAuthhor(ctx context.Context, filter models.PostFilter) (models.PostAll, error) {
-	return models.PostAll{}, nil
+	var (
+		res = models.PostAll{}
+		err error
+	)
+
+	if filter.Author == "" {
+		res, err = p.db.Post().GetPosts(filter.Page, filter.Limit)
+	} else {
+		res, err = p.db.Post().GetUserPosts(filter)
+	}
+
+	return res, err
 }
