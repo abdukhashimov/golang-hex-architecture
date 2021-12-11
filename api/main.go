@@ -1,6 +1,7 @@
 package api
 
 import (
+	_ "github.com/abdukhashimov/golang-hex-architecture/api/docs"
 	v1 "github.com/abdukhashimov/golang-hex-architecture/api/handlers/v1"
 	"github.com/abdukhashimov/golang-hex-architecture/config"
 	"github.com/gin-gonic/gin"
@@ -14,6 +15,9 @@ type RouterOptions struct {
 	Log *zap.Logger
 }
 
+//@securityDefinitions.apikey ApiKeyAuth
+//@in header
+//@name Authorization
 func New(opt *RouterOptions) *gin.Engine {
 	router := gin.Default()
 	router.Use(gin.Logger())
