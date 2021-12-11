@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/abdukhashimov/golang-hex-architecture/api"
 	"github.com/abdukhashimov/golang-hex-architecture/config"
 	"github.com/abdukhashimov/golang-hex-architecture/pkg/logger"
 )
@@ -10,5 +9,10 @@ import (
 func main() {
 	logger := logger.NewLogger()
 	cfg := config.Load()
-	fmt.Println(logger, cfg)
+	server := api.New(&api.RouterOptions{
+		Cfg: &cfg,
+		Log: logger,
+	})
+
+	server.Run(cfg.HTTPPort)
 }
