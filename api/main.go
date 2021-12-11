@@ -4,6 +4,7 @@ import (
 	_ "github.com/abdukhashimov/golang-hex-architecture/api/docs"
 	v1 "github.com/abdukhashimov/golang-hex-architecture/api/handlers/v1"
 	"github.com/abdukhashimov/golang-hex-architecture/config"
+	"github.com/abdukhashimov/golang-hex-architecture/service"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -11,8 +12,9 @@ import (
 )
 
 type RouterOptions struct {
-	Cfg *config.Config
-	Log *zap.Logger
+	Cfg     *config.Config
+	Log     *zap.Logger
+	Service *service.ServiceI
 }
 
 //@securityDefinitions.apikey ApiKeyAuth
@@ -24,8 +26,9 @@ func New(opt *RouterOptions) *gin.Engine {
 	router.Use(gin.Recovery())
 
 	handlerV1 := v1.NewHandler(&v1.HandlerOptions{
-		Cfg: opt.Cfg,
-		Log: opt.Log,
+		Cfg:     opt.Cfg,
+		Log:     opt.Log,
+		Service: opt.Service,
 	})
 
 	apiV1 := router.Group("/v1")
